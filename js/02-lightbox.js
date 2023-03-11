@@ -15,20 +15,11 @@ return`
 const cardsMarkup = createGalleryCardMarkUp(galleryItems);
 
 galleryContainer.insertAdjacentHTML('beforeend', cardsMarkup);
-galleryContainer.addEventListener('click', handleGalleryClick);
 
-function handleGalleryClick(event) {
-    event.preventDefault();
-
-    if(event.target.nodeName !== 'IMG') {
-        return
-    }
-    const modalImg = event.target.dataset.source
-    console.log(modalImg);
-
-    const instance = basicLightbox.create(`<img src= "${modalImg}" alt="" width="800" height="600">`)
-    instance.show();
-};
-
-
-// console.log(galleryItems);
+new SimpleLightbox(".gallery a", {
+    captionSelector: 'img',
+    captionsData: 'alt',
+    captionPosition: 'bottom',
+    captionDelay: 250,
+    scrollZoom: false,
+});
